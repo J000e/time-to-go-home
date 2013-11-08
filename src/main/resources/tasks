@@ -1,0 +1,11 @@
+- fel lehet jegyezni négy időpontot: érkezés, ebéd kezdete, ebéd vége, hazamenetel (az aktuális dátum is ide tartozik)
+- adottak a tárgyhónapok, itt bejegyezhetők ünnepek/szabadnapok
+- ezeket el kell tudni menteni
+- beállítható a minimum ebédidő
+- beállítható a kötelező munkaórák száma.
+- kiszámolni adott napra a ledolgozott órák számát
+- kiszámolni adott hétre az átlag órák számát
+- kiszámolni a hónapra az átlag órák számát
+- kiszámolni adott napra, hogy meddig kell bennt maradni, h meglegyen a nyolc óra
+- kiszámolni adott napra, hogy meddig kell bennt maradni, h a hétre meglegyen a nyolc óra
+- kiszámolni adott napra, hogy meddig kell bennt maradni, h a hónapra kijöjjön a nyolc óra.
