@@ -1,9 +1,9 @@
 package org.joesoft.timetogohomelogic.operator;
 
-import org.joesoft.timetogohomelogic.common.PropertyReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.joesoft.timetogohomelogic.common.PropertyReader;
 
 public class WeekRecord {
 
@@ -53,6 +53,28 @@ public class WeekRecord {
 
     public HoursAndMinutes getAvarageWorkingHours(Date actualTime) {
         return getTotalWorkTime(actualTime).divide(workDays.size());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.weekNumber;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final WeekRecord other = (WeekRecord) obj;
+        if (this.weekNumber != other.weekNumber) {
+            return false;
+        }
+        return true;
     }
     
     private int getWorkingHoursPerDay(PropertyReader propertyReader) throws NumberFormatException {
