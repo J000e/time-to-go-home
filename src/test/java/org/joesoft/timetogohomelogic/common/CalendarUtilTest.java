@@ -1,5 +1,6 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.common;
 
+import org.joesoft.timetogohomelogic.common.CalendarUtil;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;

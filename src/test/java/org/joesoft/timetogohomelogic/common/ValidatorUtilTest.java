@@ -1,5 +1,6 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.common;
 
+import org.joesoft.timetogohomelogic.common.ValidatorUtil;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 

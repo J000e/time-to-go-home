@@ -1,4 +1,4 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.operator;
 
 import java.util.Date;
 

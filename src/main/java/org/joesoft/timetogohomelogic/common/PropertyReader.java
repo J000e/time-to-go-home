@@ -1,4 +1,6 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.common;
+
+import org.joesoft.timetogohomelogic.common.PropertyReaderImpl;
 
 public interface PropertyReader {
     String getProperty(PropertyReaderImpl.PropertyName key);

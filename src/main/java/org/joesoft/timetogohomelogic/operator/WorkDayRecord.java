@@ -1,5 +1,7 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.operator;
 
+import org.joesoft.timetogohomelogic.common.PropertyReader;
+import org.joesoft.timetogohomelogic.common.ValidatorUtil;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;

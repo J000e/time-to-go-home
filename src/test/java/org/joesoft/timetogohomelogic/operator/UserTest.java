@@ -1,10 +1,14 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.operator;
 
+import org.joesoft.timetogohomelogic.operator.DayRecord;
+import org.joesoft.timetogohomelogic.operator.User;
+import org.joesoft.timetogohomelogic.common.PropertyReader;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 import java.util.Set;
 import org.joda.time.DateTime;
+import org.joesoft.timetogohomelogic.TestPropertyReader;
 import org.junit.Before;
 import org.junit.Test;
 

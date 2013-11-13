@@ -1,5 +1,6 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.operator;
 
+import org.joesoft.timetogohomelogic.common.PropertyReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

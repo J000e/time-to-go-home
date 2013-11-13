@@ -1,5 +1,6 @@
-package org.joesoft.timetogohomelogic;
+package org.joesoft.timetogohomelogic.common;
 
+import org.joesoft.timetogohomelogic.common.PropertyReaderImpl;
 import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import org.junit.Before;
