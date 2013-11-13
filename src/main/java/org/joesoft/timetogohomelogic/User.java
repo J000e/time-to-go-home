@@ -41,8 +41,7 @@ public class User {
     }
 
     private WorkDayRecord createWorkDayRecord(Date actualDate, PropertyReader propertyReader) {
-        int day = calendarUtil.getFromDate(Calendar.DAY_OF_MONTH, actualDate);
-        WorkDayRecord workDayRecord = new WorkDayRecord(day, propertyReader);
+        WorkDayRecord workDayRecord = new WorkDayRecord(actualDate, null, propertyReader);
         workDayRecord.setArrival(HoursAndMinutes.fromDate(actualDate).hours,
                 HoursAndMinutes.fromDate(actualDate).minutes);
 

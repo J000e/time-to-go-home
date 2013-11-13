@@ -2,8 +2,10 @@ package org.joesoft.timetogohomelogic;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -91,8 +93,20 @@ public class LearningJodaTimeTest {
         workDays = getWorkDays(2013, Calendar.FEBRUARY);
         assertEquals(20, workDays);
     }
-
-
+    
+    @Test
+    public void listSizeTest() {
+        List<Object> list = new ArrayList<Object>();
+        
+        Object a = new Object();
+        Object b = new Object();
+        
+        list.add(a);
+        list.add(b);
+        
+        assertEquals(b, list.get(list.size()-1));
+    }
+    
     private int firstDay(int year, int month) {
         Calendar calendar = new GregorianCalendar(year, month, 1);
         return calendar.get(Calendar.DAY_OF_WEEK);

@@ -11,7 +11,7 @@ public class HoursAndMinutes implements Comparable<HoursAndMinutes> {
     public int hours;
     public int minutes;
 
-    static HoursAndMinutes fromDate(Date actualDate) {
+    public static HoursAndMinutes fromDate(Date actualDate) {
         int hour = calendarUtil.getFromDate(Calendar.HOUR_OF_DAY, actualDate);
         int minute = calendarUtil.getFromDate(Calendar.MINUTE, actualDate);
         
@@ -19,11 +19,14 @@ public class HoursAndMinutes implements Comparable<HoursAndMinutes> {
     }
 
     public HoursAndMinutes(int hours, int minutes) {
-        cantBeBiggerThan(hours, MAXIMUM_HOURS);
         cantBeBiggerThan(minutes, MAXIMUM_MINUTES);
 
         this.hours = hours;
         this.minutes = minutes;
+    }
+    
+    public HoursAndMinutes() {
+        this(0, 0);
     }
 
     public HoursAndMinutes minus(HoursAndMinutes other) {
@@ -55,7 +58,7 @@ public class HoursAndMinutes implements Comparable<HoursAndMinutes> {
     }
 
     public HoursAndMinutes divide(double divideBy) {
-        int summaMinutes = (hours * MINUTES_IN_A_HOUR) + minutes;
+        int summaMinutes = convertToMinutes(this);
         double divided = summaMinutes / divideBy;
         double rounded = Math.round(divided);
 
@@ -133,6 +136,24 @@ public class HoursAndMinutes implements Comparable<HoursAndMinutes> {
         if (other == null) {
             throw new IllegalArgumentException("Null parameter is not allowed.");
         }
+    }
+
+    public HoursAndMinutes multiply(int by) {
+        int convertedMinutes = convertToMinutes(this);
+        convertedMinutes *= by;
+        
+        return minutesToHoursAndMinutes(convertedMinutes);
+    }
+
+    private int convertToMinutes(HoursAndMinutes convertable) {
+        return (convertable.hours * MINUTES_IN_A_HOUR) + convertable.minutes;
+    }
+
+    private HoursAndMinutes minutesToHoursAndMinutes(int minutes) {
+        int hoursInMinutes = minutes/MINUTES_IN_A_HOUR;
+        int minutesLeft = minutes%MINUTES_IN_A_HOUR;
+        
+        return new HoursAndMinutes(hoursInMinutes, minutesLeft);
     }
 
     public static class TimeCantBeNegativeException extends RuntimeException {

@@ -1,5 +1,6 @@
 package org.joesoft.timetogohomelogic;
 
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,12 +15,16 @@ public class WorkDayRecord extends DayRecord {
     private final HoursAndMinutes minimumLunchTime;
     private final HoursAndMinutes hoursToWork;
 
-    public WorkDayRecord(int day, PropertyReader propertyReader) {
-        super(day);
+    public WorkDayRecord(Date date, WeekRecord weekRecord, PropertyReader propertyReader) {
+        super(date);
         final int minutes = getProperty(propertyReader, PropertyReader.PropertyName.MINIMUM_LUNCH_TIME);
-        minimumLunchTime = new HoursAndMinutes(0, minutes);
         final int hours = getProperty(propertyReader, PropertyReader.PropertyName.WORKING_HOURS_PER_DAY);
+        minimumLunchTime = new HoursAndMinutes(0, minutes);
         hoursToWork = new HoursAndMinutes(hours, 0);
+    }
+    
+    public HoursAndMinutes countWorktimeForWeekly() {
+        return null;
     }
     
     public void setArrival(int hours, int minutes) {
@@ -81,7 +86,11 @@ public class WorkDayRecord extends DayRecord {
     public HoursAndMinutes getLunchEnds() {
         return lunchEnds;
     }
-
+    
+    public HoursAndMinutes getHoursToWork() {
+        return hoursToWork;
+    }
+    
     private boolean eventIsBefore(HoursAndMinutes actualTime, HoursAndMinutes event) {
         return !validator.isAnyOfThemNull(event) && event.isGreaterThan(actualTime);
     }
@@ -100,7 +109,7 @@ public class WorkDayRecord extends DayRecord {
 
         return idealLeaveTime;
     }
-
+    
     private HoursAndMinutes verifyMinimumLuchTime(HoursAndMinutes time) {
         HoursAndMinutes minimumTime = lunchStarts.plus(minimumLunchTime);
         if (minimumTime.isGreaterThan(time)) {

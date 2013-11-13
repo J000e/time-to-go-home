@@ -37,7 +37,6 @@ public class CalendarUtilTest {
         assertEquals(20, calendarUtil.getNumberOfWorkDays(2014, Calendar.FEBRUARY));
         assertEquals(21, calendarUtil.getNumberOfWorkDays(2014, Calendar.MARCH));
         assertEquals(22, calendarUtil.getNumberOfWorkDays(2014, Calendar.APRIL));
-        
     }
 
 }

@@ -1,7 +1,11 @@
 package org.joesoft.timetogohomelogic;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,12 +16,13 @@ public class WorkDayRecordTest {
     @Before
     public void setUp() {
         propertyReader = new TestPropertyReader();
-        record = new WorkDayRecord(31, propertyReader);
+        Date testDate = new DateTime(2013, 11, 12, 8, 15).toDate();
+        record = new WorkDayRecord(testDate, null, propertyReader);
         record.setArrival(0, 0);
     }
     
     @Test
-    public void testWorkHoursIsZero() throws Exception {
+    public void testWorkHoursIsZero() {
         record.setLunchStart(0, 0);
         record.setLunchEnds(0, 30);
         record.setLeave(0, 30);
@@ -28,7 +33,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testLeaveIncrementsWorkHours() throws Exception {
+    public void testLeaveIncrementsWorkHours() {
         record.setLunchStart(0, 0);
         record.setLunchEnds(0, 30);
         record.setLeave(2, 40);
@@ -39,7 +44,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testSetupAllOnlyHours() throws Exception {
+    public void testSetupAllOnlyHours() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 0);
         record.setLunchEnds(13, 0);
@@ -51,7 +56,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testSetupAllHoursAndMinutes() throws Exception {
+    public void testSetupAllHoursAndMinutes() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 0);
         record.setLunchEnds(12, 30);
@@ -63,13 +68,13 @@ public class WorkDayRecordTest {
     }
     
     @Test(expected = IllegalArgumentException.class)
-    public void testLunchStartCantHappenBeforeArrival() throws Exception {
+    public void testLunchStartCantHappenBeforeArrival() {
         record.setArrival(8, 0);
         record.setLunchStart(7, 59);
     }
     
     @Test
-    public void testIfLunchTimeIsShorterThanMinimumModifyLunchEndAccording() throws Exception {
+    public void testIfLunchTimeIsShorterThanMinimumModifyLunchEndAccording() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 00);
         record.setLunchEnds(12, 10);
@@ -79,7 +84,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testIdealLeaveTimeWhenAllTimesAreSet() throws Exception {
+    public void testIdealLeaveTimeWhenAllTimesAreSet() {
         record.setLunchStart(0, 0);
         record.setLunchEnds(0, 30);
         record.setLeave(0, 30);
@@ -89,7 +94,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testIdealLeaveTimeWhenAllTimesAreSetWithLongLunch() throws Exception {
+    public void testIdealLeaveTimeWhenAllTimesAreSetWithLongLunch() {
         record.setLunchStart(0, 0);
         record.setLunchEnds(1, 30);
         record.setLeave(1, 30);
@@ -99,19 +104,19 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testIdealLeaveTimeWhenOnlyArrivalIsSet() throws Exception {
+    public void testIdealLeaveTimeWhenOnlyArrivalIsSet() {
         assertEquals(8, record.getIdealLeaveTime().hours);
         assertEquals(30, record.getIdealLeaveTime().minutes);
     }
     
     @Test
-    public void testIdealLeaveTimeWheArrivalAndLunchStartIsSet() throws Exception {
+    public void testIdealLeaveTimeWheArrivalAndLunchStartIsSet() {
         assertEquals(8, record.getIdealLeaveTime().hours);
         assertEquals(30, record.getIdealLeaveTime().minutes);
     }
     
     @Test
-    public void testTimeWorkedAfterArrivalBeforeLunchStart() throws Exception {
+    public void testTimeWorkedAfterArrivalBeforeLunchStart() {
         record.setArrival(8, 0);
         HoursAndMinutes actualTime = new HoursAndMinutes(9, 15);
 
@@ -122,7 +127,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testTimeWorkedAfterLunchStartBeforeLunchEnds() throws Exception {
+    public void testTimeWorkedAfterLunchStartBeforeLunchEnds() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 10);
         HoursAndMinutes actualTime = new HoursAndMinutes(12, 30);
@@ -134,7 +139,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testTimeWorkedAfterLunchEndsBeforeLeave() throws Exception {
+    public void testTimeWorkedAfterLunchEndsBeforeLeave() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 10);
         record.setLunchEnds(12, 40);
@@ -147,7 +152,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testTimeWorkedAfterLeave() throws Exception {
+    public void testTimeWorkedAfterLeave() {
         record.setArrival(8, 0); 
         record.setLunchStart(12, 10);
         record.setLunchEnds(12, 40);
@@ -161,7 +166,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testActualTimeIsBeforeArrival() throws Exception {
+    public void testActualTimeIsBeforeArrival() {
         record.setArrival(8, 0);
         HoursAndMinutes actualTime = new HoursAndMinutes(7, 15);
         
@@ -172,7 +177,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testActualTimeIsBeforeLunchStart() throws Exception {
+    public void testActualTimeIsBeforeLunchStart() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 10);
         HoursAndMinutes actualTime = new HoursAndMinutes(10, 15);
@@ -184,7 +189,7 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testActualTimeIsBeforeLunchEnd() throws Exception {
+    public void testActualTimeIsBeforeLunchEnd() {
         record.setArrival(8, 0);
         record.setLunchStart(12, 10);
         record.setLunchEnds(13, 30);
@@ -197,17 +202,29 @@ public class WorkDayRecordTest {
     }
     
     @Test
-    public void testActualTimeIsBeforeLeave() throws Exception {
+    public void testActualTimeIsBeforeLeave() {
         record.setArrival(8, 0);
-        record.setLunchStart(12, 10);//4:10
+        record.setLunchStart(12, 10);
         record.setLunchEnds(13, 30);
         record.setLeave(18, 45);
-        HoursAndMinutes actualTime = new HoursAndMinutes(17, 45);//4:15 => 8:25
+        HoursAndMinutes actualTime = new HoursAndMinutes(17, 45);
         
         HoursAndMinutes timeWorked = record.calculateTimeWorked(actualTime);
         
         assertEquals(8, timeWorked.hours);
         assertEquals(25, timeWorked.minutes);
+    }
+    
+    @Test
+    public void theActualDayIsTheSameAsTheVerifiedOne() {
+        Date actualDate = new DateTime(2013, 11, 12, 8, 0).toDate();
+        assertTrue(record.isToday(actualDate));
+    }
+    
+    @Test
+    public void theActualDayIsNotTheSameAsTheVerifiedOne() {
+        Date actualDate = new DateTime(2013, 11, 13, 8, 0).toDate();
+        assertFalse(record.isToday(actualDate));
     }
     
 }
