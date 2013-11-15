@@ -5,7 +5,7 @@ import java.util.Map;
 import org.joesoft.timetogohomelogic.dao.WeekDao;
 import org.joesoft.timetogohomelogic.operator.WeekRecord;
 
-class TestWeekDao implements WeekDao {
+public class TestWeekDao implements WeekDao {
     private Map<Integer, WeekRecord> weekRecords;
     
 

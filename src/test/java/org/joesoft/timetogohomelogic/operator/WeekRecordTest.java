@@ -1,17 +1,12 @@
 package org.joesoft.timetogohomelogic.operator;
 
-import org.joesoft.timetogohomelogic.operator.HoursAndMinutes;
-import org.joesoft.timetogohomelogic.operator.WeekRecord;
-import org.joesoft.timetogohomelogic.operator.MaximumDaysPerWeekExceededException;
-import org.joesoft.timetogohomelogic.operator.WorkDayRecord;
-import org.joesoft.timetogohomelogic.operator.FreeDayRecord;
-import org.joesoft.timetogohomelogic.common.PropertyReader;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.Date;
 import org.joda.time.DateTime;
 import org.joesoft.timetogohomelogic.TestPropertyReader;
+import org.joesoft.timetogohomelogic.common.PropertyReader;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -149,6 +144,6 @@ public class WeekRecordTest {
     }
 
     private WorkDayRecord getWorkDayRecord(Date date) {
-        return new WorkDayRecord(date, null, propertyReader);
+        return new WorkDayRecord(date, propertyReader);
     }
 }

@@ -1,10 +1,10 @@
 package org.joesoft.timetogohomelogic.operator;
 
-import org.joesoft.timetogohomelogic.common.PropertyReader;
-import org.joesoft.timetogohomelogic.common.ValidatorUtil;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.joesoft.timetogohomelogic.common.PropertyReader;
+import org.joesoft.timetogohomelogic.common.ValidatorUtil;
 
 public class WorkDayRecord extends DayRecord {
 
@@ -17,7 +17,7 @@ public class WorkDayRecord extends DayRecord {
     private final HoursAndMinutes minimumLunchTime;
     private final HoursAndMinutes hoursToWork;
 
-    public WorkDayRecord(Date date, WeekRecord weekRecord, PropertyReader propertyReader) {
+    public WorkDayRecord(Date date, PropertyReader propertyReader) {
         super(date);
         final int minutes = getProperty(propertyReader, PropertyReader.PropertyName.MINIMUM_LUNCH_TIME);
         final int hours = getProperty(propertyReader, PropertyReader.PropertyName.WORKING_HOURS_PER_DAY);
@@ -144,5 +144,9 @@ public class WorkDayRecord extends DayRecord {
         }
 
         return propertyValue;
+    }
+
+    public void setArrival(HoursAndMinutes arrival) {
+        this.arrival = arrival;
     }
 }

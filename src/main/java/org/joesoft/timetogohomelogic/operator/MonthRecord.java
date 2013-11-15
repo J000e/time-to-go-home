@@ -1,9 +1,9 @@
 package org.joesoft.timetogohomelogic.operator;
 
-import org.joesoft.timetogohomelogic.common.CalendarUtil;
-import org.joesoft.timetogohomelogic.common.ValidatorUtil;
 import java.util.HashSet;
 import java.util.Set;
+import org.joesoft.timetogohomelogic.common.CalendarUtil;
+import org.joesoft.timetogohomelogic.common.ValidatorUtil;
 
 public class MonthRecord {
     private static final ValidatorUtil validator = new ValidatorUtil();
@@ -20,7 +20,7 @@ public class MonthRecord {
     }
     
     public void addDayRecord(DayRecord dayRecord) {
-        if (!validator.isAnyOfThemNull(dayRecord)) {
+        if (!validator.isNull(dayRecord)) {
             days.add(dayRecord);
         }
     }

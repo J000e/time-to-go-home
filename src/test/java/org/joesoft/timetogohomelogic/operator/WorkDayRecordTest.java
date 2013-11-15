@@ -1,8 +1,5 @@
 package org.joesoft.timetogohomelogic.operator;
 
-import org.joesoft.timetogohomelogic.operator.HoursAndMinutes;
-import org.joesoft.timetogohomelogic.operator.WorkDayRecord;
-import org.joesoft.timetogohomelogic.common.PropertyReader;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 import org.joda.time.DateTime;
 import org.joesoft.timetogohomelogic.TestPropertyReader;
+import org.joesoft.timetogohomelogic.common.PropertyReader;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +19,7 @@ public class WorkDayRecordTest {
     public void setUp() {
         propertyReader = new TestPropertyReader();
         Date testDate = new DateTime(2013, 11, 12, 8, 15).toDate();
-        record = new WorkDayRecord(testDate, null, propertyReader);
+        record = new WorkDayRecord(testDate, propertyReader);
         record.setArrival(0, 0);
     }
     
